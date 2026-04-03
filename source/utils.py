@@ -57,3 +57,18 @@ def correlation(data_x, data_y):
     cov = covariance(data_x, data_y)
     
     return cov / (std_x * std_y)
+
+def euclidean_distance(p, q):
+    if len(p) != len(q):
+        raise ValueError("Points must be of the same length")
+    
+    return math.sqrt(sum((x - y) ** 2 for x, y in zip(p, q)))
+
+def statistical_distance(p, q, variance):
+    if len(p) != len(q):
+        raise ValueError("Points must be of the same length")
+    
+    if len(p) != len(variance):
+        raise ValueError("Variance must be of the same length as points")
+    
+    return math.sqrt(sum(((x - y) ** 2) / var for x, y, var in zip(p, q, variance)))
