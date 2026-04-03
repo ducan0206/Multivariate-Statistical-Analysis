@@ -1,13 +1,13 @@
 import math
 
 def mean(data):
-    if not data:
+    if len(data) == 0:
         raise ValueError("Data cannot be empty")
     
     return sum(data) / len(data)
 
 def variance(data, is_population=False):
-    if not data:
+    if len(data) == 0:
         raise ValueError("Data cannot be empty")
     
     if len(data) == 1:
@@ -24,7 +24,7 @@ def standard_deviation(data, is_population=False):
     return math.sqrt(variance(data, is_population))
 
 def covariance(data_x, data_y, is_population=False):
-    if not data_x or not data_y:
+    if len(data_x) == 0 or len(data_y) == 0:
         raise ValueError("Data cannot be empty")
     
     if len(data_x) != len(data_y) or len(data_x) == 1:
@@ -42,7 +42,7 @@ def covariance(data_x, data_y, is_population=False):
         return cov_sum / (n - 1)
     
 def correlation(data_x, data_y):
-    if not data_x or not data_y:
+    if len(data_x) == 0 or len(data_y) == 0:
         raise ValueError("Data cannot be empty")
     
     if len(data_x) != len(data_y) or len(data_x) == 1:
