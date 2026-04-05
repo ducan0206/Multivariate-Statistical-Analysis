@@ -3,81 +3,81 @@ import numpy as np
 
 def mean(data):
     """
-    T�nh gi� tr? trung b�nh (mean) c?a m?t t?p d? li?u.
+    Tính giá trị trung bình (mean) của một tập dữ liệu.
 
     Input:
-        - data: Danh s�ch ho?c m?ng ch?a c�c gi� tr? s?.
+        - data: Danh sách hoặc mảng chứa các giá trị số.
     Output:
-        - Gi� tr? trung b�nh c?a t?p d? li?u.
+        - Giá trị trung bình của tập dữ liệu.
     """
     if len(data) == 0:
-        raise ValueError("D? li?u kh�ng ???c ?? tr?ng")
+        raise ValueError("Dữ liệu không được để trống")
     
-    # T?ng c�c gi� tr? chia cho s? l??ng ph?n t?
+    # Tổng các giá trị chia cho số lượng phần tử
     return sum(data) / len(data)
 
 def variance(data, is_population=False):
     """
-    T�nh ph??ng sai (variance) c?a t?p d? li?u.
+    Tính phương sai (variance) của tập dữ liệu.
 
     Input:
-        - data: Danh s�ch c�c gi� tr? s?.
-        - is_population: Boolean, True n?u l� ph??ng sai t?ng th?, False n?u l� ph??ng sai m?u (m?c ??nh l� False).
+        - data: Danh sách các giá trị số.
+        - is_population: Boolean, True nếu là phương sai tổng thể, False nếu là phương sai mẫu (mặc định là False).
     Output:
-        - Gi� tr? ph??ng sai.
+        - Giá trị phương sai.
     """
     if len(data) == 0:
-        raise ValueError("D? li?u kh�ng ???c ?? tr?ng")
+        raise ValueError("Dữ liệu không được để trống")
     
     if len(data) == 1:
-        raise ValueError("C?n �t nh?t hai ?i?m d? li?u ?? t�nh ph??ng sai")
+        raise ValueError("Cần ít nhất hai điểm dữ liệu để tính phương sai")
     
     mu = mean(data)
-    # T�nh t?ng b�nh ph??ng ?? l?ch so v?i gi� tr? trung b�nh
+    # Tính tổng bình phương độ lệch so với giá trị trung bình
     sum_squared_diff = sum((x - mu) ** 2 for x in data)
     
     if is_population:
-        # Ph??ng sai t?ng th? chia cho N
+        # Phương sai tổng thể chia cho N
         return sum_squared_diff / len(data)
     else:
-        # Ph??ng sai m?u chia cho N-1 (hi?u ch?nh Bessel)
+        # Phương sai mẫu chia cho N-1 (hiệu chỉnh Bessel)
         return sum_squared_diff / (len(data) - 1)
     
 def standard_deviation(data, is_population=False):
     """
-    T�nh ?? l?ch chu?n (standard deviation).
+    Tính độ lệch chuẩn (standard deviation).
 
     Input:
-        - data: Danh s�ch c�c gi� tr? s?.
-        - is_population: T�nh cho t?ng th? hay m?u.
+        - data: Danh sách các giá trị số.
+        - is_population: Tính cho tổng thể hay mẫu.
     Output:
-        - Gi� tr? ?? l?ch chu?n.
+        - Giá trị độ lệch chuẩn.
     """
-    # ?? l?ch chu?n l� c?n b?c hai c?a ph??ng sai
+    # Độ lệch chuẩn là căn bậc hai của phương sai
     return math.sqrt(variance(data, is_population))
 
 def covariance(data_x, data_y, is_population=False):
     """
-    T�nh hi?p ph??ng sai (covariance) gi?a hai bi?n X v� Y.
+    Tính hiệp phương sai (covariance) giữa hai biến X và Y.
 
     Input:
-        - data_x: Danh s�ch gi� tr? c?a bi?n X.
-        - data_y: Danh s�ch gi� tr? c?a bi?n Y.
-        - is_population: T�nh cho t?ng th? hay m?u.
+        - data_x: Danh sách giá trị của biến X.
+        - data_y: Danh sách giá trị của biến Y.
+        - is_population: Tính cho tổng thể hay mẫu.
     Output:
-        - Gi� tr? hi?p ph??ng sai.
+        - Giá trị hiệp phương sai.
     """
     if len(data_x) == 0 or len(data_y) == 0:
-        raise ValueError("D? li?u kh�ng ???c ?? tr?ng")
+        raise ValueError("Dữ liệu không được để trống")
     
     if len(data_x) != len(data_y) or len(data_x) == 1:
-        raise ValueError("Hai t?p d? li?u ph?i c� c�ng k�ch th??c v� l?n h?n 1 ph?n t?")
+        raise ValueError("Hai tập dữ liệu phải có cùng kích thước và lớn hơn 1 phần tử")
     
     n = len(data_x)
     mu_x = mean(data_x)
     mu_y = mean(data_y)
     
-    # T�nh t?ng t�ch c�c ?? l?ch t??ng ?ng c?a X v� Y
+    # Tính tổng tích các độ lệch tương ứng của X và Y
     cov_sum = sum((x - mu_x) * (y - mu_y) for x, y in zip(data_x, data_y))
     
     if is_population:
@@ -87,62 +87,62 @@ def covariance(data_x, data_y, is_population=False):
     
 def correlation(data_x, data_y):
     """
-    T�nh h? s? t??ng quan Pearson (correlation coefficient).
+    Tính hệ số tương quan Pearson (correlation coefficient).
 
     Input:
-        - data_x, data_y: Hai t?p d? li?u c?n t�nh t??ng quan.
+        - data_x, data_y: Hai tập dữ liệu cần tính tương quan.
     Output:
-        - Gi� tr? h? s? t??ng quan trong kho?ng [-1, 1].
+        - Giá trị hệ số tương quan trong khoảng [-1, 1].
     """
     if len(data_x) == 0 or len(data_y) == 0:
-        raise ValueError("D? li?u kh�ng ???c ?? tr?ng")
+        raise ValueError("Dữ liệu không được để trống")
     
     if len(data_x) != len(data_y) or len(data_x) == 1:
-        raise ValueError("D? li?u kh�ng h?p l? ?? t�nh t??ng quan")
+        raise ValueError("Dữ liệu không hợp lệ để tính tương quan")
     
     std_x = standard_deviation(data_x)
     std_y = standard_deviation(data_y)
     
-    # Tr�nh l?i chia cho 0 n?u m?t bi?n kh�ng c� s? bi?n thi�n
+    # Tránh lỗi chia cho 0 nếu một biến không có sự biến thiên
     if std_x == 0 or std_y == 0:
-        raise ValueError("?? l?ch chu?n b?ng 0, kh�ng th? t�nh t??ng quan")
+        raise ValueError("Độ lệch chuẩn bằng 0, không thể tính tương quan")
     
     cov = covariance(data_x, data_y)
     
-    # H? s? t??ng quan = Hi?p ph??ng sai / T�ch hai ?? l?ch chu?n
+    # Hệ số tương quan = Hiệp phương sai / Tích hai độ lệch chuẩn
     return cov / (std_x * std_y)
 
 def euclidean_distance(p, q):
     """
-    T�nh kho?ng c�ch Euclid gi?a hai ?i?m trong kh�ng gian n-chi?u.
+    Tính khoảng cách Euclid giữa hai điểm trong không gian n-chiều.
 
     Input:
-        - p, q: Hai vector (danh s�ch) ??i di?n cho hai ?i?m.
+        - p, q: Hai vectơ (danh sách) đại diện cho hai điểm.
     Output:
-        - Kho?ng c�ch Euclid (s? th?c).
+        - Khoảng cách Euclid (số thực).
     """
     if len(p) != len(q):
-        raise ValueError("Hai ?i?m ph?i c� c�ng s? chi?u")
+        raise ValueError("Hai điểm phải có cùng số chiều")
     
     return math.sqrt(sum((x - y) ** 2 for x, y in zip(p, q)))
 
 def statistical_distance(p, q, variance):
     """
-    T�nh kho?ng c�ch th?ng k� (statistical distance), c� t�nh ??n ph??ng sai c?a t?ng chi?u.
+    Tính khoảng cách thống kê (statistical distance), có tính đến phương sai của từng chiều.
 
     Input:
-        - p, q: Hai vector ??i di?n cho hai ?i?m.
-        - variance: Danh s�ch ph??ng sai t??ng ?ng c?a t?ng chi?u.
+        - p, q: Hai vectơ đại diện cho hai điểm.
+        - variance: Danh sách phương sai tương ứng của từng chiều.
     Output:
-        - Gi� tr? kho?ng c�ch th?ng k�.
+        - Giá trị khoảng cách thống kê.
     """
     if len(p) != len(q):
-        raise ValueError("Hai ?i?m ph?i c� c�ng s? chi?u")
+        raise ValueError("Hai điểm phải có cùng số chiều")
     
     if len(p) != len(variance):
-        raise ValueError("S? l??ng gi� tr? ph??ng sai ph?i kh?p v?i s? chi?u c?a ?i?m")
+        raise ValueError("Số lượng giá trị phương sai phải khớp với số chiều của điểm")
     
-    # M?i chi?u ???c chu?n h�a b?ng c�ch chia cho ph??ng sai c?a chi?u ?�
+    # Mỗi chiều được chuẩn hóa bằng cách chia cho phương sai của chiều đó
     return math.sqrt(sum(((x - y) ** 2) / var for x, y, var in zip(p, q, variance)))
 
 def mahalanobis_distance(p, q, covariance_matrix):

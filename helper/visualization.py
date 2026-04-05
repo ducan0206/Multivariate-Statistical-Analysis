@@ -88,12 +88,12 @@ def box_plot(df, x_col, y_col):
     plt.grid(True, axis='y', alpha=0.3)
 
 def contribution_bar(values, labels, title, color="steelblue", ax=None):
-    # Bar chart % dong gop cua tung bien vao khoang cach
+    # Bi?u ?? thanh % ?óng góp c?a t?ng bi?n vào kho?ng cách
     pct = np.array(values) / np.sum(values) * 100
     if ax is None:
         fig, ax = plt.subplots(figsize=(10, 4))
     bars = ax.barh(labels[::-1], pct[::-1], color=color, alpha=0.75, edgecolor="white")
-    ax.set_xlabel("Dong gop (%)", fontsize=10)
+    ax.set_xlabel("?óng góp (%)", fontsize=10)
     ax.set_title(title, fontsize=11, fontweight="bold")
     for bar, val in zip(bars, pct[::-1]):
         ax.text(bar.get_width() + 0.3, bar.get_y() + bar.get_height() / 2,
