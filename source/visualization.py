@@ -37,39 +37,6 @@ def dot_diagram(df, column_name):
     plt.yticks([])  # Ẩn trục Y vì đây là biểu đồ 1 chiều
     plt.grid(True, axis='x', alpha=0.3)
 
-def scatter_plot(df, col1, col2):
-    """
-    Vẽ biểu đồ phân tán (Scatter Plot) giữa hai biến và đánh dấu vector trung bình.
-
-    Input:
-        - df: DataFrame chứa dữ liệu.
-        - col1: Tên biến cho trục X.
-        - col2: Tên biến cho trục Y.
-    Output:
-        - Hiển thị biểu đồ phân tán kèm điểm trung bình (mu1, mu2).
-    """
-    x = df[col1]
-    y = df[col2]
-    x_bar = mean(x)
-    y_bar = mean(y)
-
-    # Vẽ các điểm dữ liệu thực tế
-    plt.scatter(x, y, alpha=0.4, s=25, color="steelblue", label="Dữ liệu")
-    
-    # Đánh dấu Vector trung bình bằng hình ngôi sao đỏ nổi bật
-    plt.scatter([x_bar], [y_bar], s=200, color="red", zorder=5, marker="*",
-               label=f"Vector trung bình (μ₁={x_bar:.2f}, μ₂={y_bar:.2f})")
-    
-    # Vẽ các đường thẳng đứt quãng đi qua điểm trung bình
-    plt.axvline(x_bar, color="red", lw=1, ls="--", alpha=0.6)
-    plt.axhline(y_bar, color="red", lw=1, ls="--", alpha=0.6)
-    
-    plt.xlabel(col1.capitalize(), fontsize=12)
-    plt.ylabel(col2.capitalize(), fontsize=12)
-    plt.title(f"Biểu đồ phân tán: {col1} vs {col2}", fontsize=14, fontweight="bold")
-    plt.legend(fontsize=10)
-    plt.grid(True, alpha=0.3)
-
 def lln_convergence(ax, sizes, errors, column_name, color="steelblue"):
     """
     Vẽ đồ thị hội tụ theo Luật số lớn (LLN) - sai số tương đối giảm khi kích thước mẫu tăng.
@@ -101,3 +68,21 @@ def lln_convergence(ax, sizes, errors, column_name, color="steelblue"):
                     textcoords='offset points',
                     arrowprops=dict(arrowstyle='->', color=color),
                     fontsize=8)
+
+def box_plot(df, x_col, y_col):
+    """
+    Vẽ biểu đồ hộp (Box Plot) để so sánh phân phối của một biến định lượng theo các mức chất lượng.
+
+    Input:
+        - df: DataFrame chứa dữ liệu.
+        - x_col: Tên biến định danh (thường là 'quality') để phân nhóm trên trục X.
+        - y_col: Tên biến định lượng cần quan sát phân phối trên trục Y.
+    Output:
+        - Hiển thị biểu đồ Box Plot với Seaborn.
+    """
+    # Vẽ biểu đồ boxplot để quan sát trung vị, tứ phân vị và các điểm ngoại lệ theo từng nhóm
+    sns.boxplot(x=x_col, y=y_col, data=df, palette="coolwarm", hue=x_col, legend=False)
+    plt.title(f"Biểu đồ hộp: {y_col} theo {x_col}", fontsize=12, fontweight="bold")
+    plt.xlabel(x_col.capitalize(), fontsize=10)
+    plt.ylabel(y_col.capitalize(), fontsize=10)
+    plt.grid(True, axis='y', alpha=0.3)
