@@ -30,6 +30,7 @@ def dot_diagram(df, column_name):
     Output:
         - Hi?n th? bi?u ?? scatter plot 1D (tr?c Y c? ??nh b?ng 0).
     """
+    
     # T?o m?ng s? 0 có cùng kích th??c ?? tr?i d? li?u trên m?t ???ng th?ng ngang
     plt.scatter(df[column_name], np.zeros_like(df[column_name]), alpha=0.5, color="salmon", s=1)
     plt.title(f"Bi?u ?? ch?m c?a {column_name}", fontsize=10, fontweight="bold")
