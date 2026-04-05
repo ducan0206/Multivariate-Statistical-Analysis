@@ -2,7 +2,7 @@
 
 Dự án thực hiện phân tích thống kê đa biến trên tập dữ liệu [Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality) (Red Wine) để thực hành các khái niệm thống kê cơ bản.
 
-## 📂 Cấu trúc thư mục
+## Cấu trúc thư mục
 
 ```text
 Multivariate-Statistical-Analysis/
@@ -22,7 +22,7 @@ Multivariate-Statistical-Analysis/
 
 ---
 
-## 🚀 Hướng dẫn cài đặt
+## Hướng dẫn cài đặt
 
 ### 1. Cài đặt môi trường
 Khuyên dùng Python 3.10 trở lên. Nên sử dụng môi trường ảo (venv hoặc conda).
@@ -61,7 +61,7 @@ Sau đó truy cập vào trình duyệt và chọn file cần chạy. Hoặc vô
 
 ---
 
-## 📊 Tóm tắt kết quả
+## Tóm tắt kết quả
 
 - **Thống kê mô tả:**
     - Dataset gồm 1,599 mẫu rượu vang đỏ với chất lượng trung bình 5.64/10.
@@ -73,7 +73,7 @@ Sau đó truy cập vào trình duyệt và chọn file cần chạy. Hoặc vô
 
 ---
 
-## 🛠 Thư viện sử dụng
+## Thư viện sử dụng
 - `numpy`, `pandas`: Xử lý dữ liệu và tính toán vector.
 - `matplotlib`, `seaborn`: Trực quan hóa dữ liệu.
 - `scipy.stats`: Kiểm định thống kê (Shapiro-Wilk) và các hàm xác suất.
