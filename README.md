@@ -52,7 +52,7 @@ Sau đó truy cập vào trình duyệt và chọn file cần chạy. Hoặc vô
 
 ---
 
-## 📝 Phân công nhiệm vụ
+## Phân công nhiệm vụ
 
 | Thành viên | Nhiệm vụ chính |
 | :--- | :--- |
