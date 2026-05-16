@@ -12,7 +12,7 @@ Multivariate-Statistical-Analysis/
 │   ├── 01_descriptive_stats.ipynb      # Các đại lượng thống kê cơ bản
 │   ├── 02_clt_lln_proof.ipynb          # Mô phỏng LLN và CLT
 │   └── 03_statistical_distance.ipynb   # Khoảng cách Euclid và Thống kê
-├── source/                             # Mã nguồn Python tái sử dụng
+├── helper/                             # Mã nguồn Python tái sử dụng
 │   ├── __init__.py
 │   ├── utils.py                        # Các hàm tính toán thống kê (mean, var, cov, corr, dist)
 │   └── visualization.py                # Các hàm vẽ biểu đồ (LLN, CLT, distribution)
