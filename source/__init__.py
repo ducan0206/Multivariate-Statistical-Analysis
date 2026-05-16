@@ -1,1 +1,2 @@
-from .utils import mean, variance, standard_deviation, covariance, correlation
+from .utils import mean, variance, standard_deviation, covariance, correlation, euclidean_distance, statistical_distance, mahalanobis_distance, mahalanobis_all_samples, mle_normal_univariate, mle_normal_multivariate, log_likelihood_normal, log_likelihood_univariate
+from .visualization import distribution, dot_diagram, box_plot, lln_convergence, contribution_bar, plot_lln_convergence_grid, plot_clt_convergence_grid
